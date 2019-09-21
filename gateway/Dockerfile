@@ -1,6 +1,6 @@
 FROM mhart/alpine-node
-WORKDIR ./usr/share/gateway/
-COPY package.json package-lock.json ./usr/share/gateway/
+WORKDIR /app
+COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 EXPOSE 3333
