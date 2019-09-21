@@ -9,7 +9,9 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-mongoose.connect(`${URL}${DB_NAME}`, {useNewUrlParser: true});
+mongoose.connect(`${URL}${DB_NAME}`, {useNewUrlParser: true})
+    .then(() => console.log('successfully connected to DB'))
+    .catch((err) => console.log(err, 'error while connecting to db'));
 mongoose.connection.on('error', () => console.error.bind(console, 'connection error:'));
 mongoose.connection.once('open', () => console.log('connected'));
 
