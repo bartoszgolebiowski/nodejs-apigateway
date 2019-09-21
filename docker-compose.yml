@@ -31,15 +31,11 @@ services:
   hello-mongo:
     image: mongo
     container_name: hello-mongo
-    volumes:
-      - "/var/lib/mongodb-hello:/data/db"
     ports:
       - '27017:27017'
 
   welcome-mongo:
     image: mongo
     container_name: welcome-mongo
-    volumes:
-      - "/var/lib/mongodb-welcome:/data/db"
     ports:
-      - '27018:27017'
+      - '27010:27017'
