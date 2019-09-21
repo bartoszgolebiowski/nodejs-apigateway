@@ -1,5 +1,10 @@
-const HELLO_SERVICE = 'http://localhost:2222';
-const WELCOME_SERVICE = 'http://localhost:1111';
+const HELLO_SERVICE_NAME = 'hello-service';
+const HELLO_SERVICE_PORT = 2222;
+const WELCOME_SERVICE_NAME = 'welcome-service';
+const WELCOME_SERVICE_PORT = 1111;
+
+const HELLO_SERVICE = `http://${HELLO_SERVICE_NAME}:${HELLO_SERVICE_PORT}`;
+const WELCOME_SERVICE = `http://${WELCOME_SERVICE_NAME}:${WELCOME_SERVICE_PORT}`;
 
 module.exports = {
     HELLO_SERVICE,

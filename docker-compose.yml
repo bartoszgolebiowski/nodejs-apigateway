@@ -17,7 +17,7 @@ services:
     ports:
       - '2222:2222'
     links:
-      - hello-service-mongo
+      - hello-mongo
 
   welcome-service:
     container_name: welcome-service
@@ -26,16 +26,16 @@ services:
     ports:
       - '1111:1111'
     links:
-      - welcome-service-mongo
+      - welcome-mongo
 
   hello-mongo:
     image: mongo
-    container_name: hello-service-mongo
+    container_name: hello-mongo
     ports:
       - '27017:27017'
 
   welcome-mongo:
     image: mongo
-    container_name: welcome-service-mongo
+    container_name: welcome-mongo
     ports:
       - '27018:27017'
