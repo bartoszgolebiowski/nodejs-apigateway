@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
+import {Provider} from 'react-redux'
 import Dashboard from './containers/Dashboard/Dashboard';
+import store from './redux/store'
 
 function App() {
     return (
-        <Dashboard/>
+        <Provider store={store}>
+            <Dashboard/>
+        </Provider>
     )
 }
 

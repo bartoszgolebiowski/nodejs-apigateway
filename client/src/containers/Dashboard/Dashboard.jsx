@@ -5,7 +5,7 @@ import List from "../../components/List/List";
 
 const {Header, Content, Footer} = Layout;
 
-const Dashboard = (props) => {
+const Dashboard = () => {
     return (
         <div>
             <Layout>
@@ -23,4 +23,4 @@ const Dashboard = (props) => {
     )
 };
 
-export default Dashboard;
+export default Dashboard
