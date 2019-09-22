@@ -4,27 +4,21 @@ const bodyParser = require("body-parser");
 
 const {URL, DB_NAME} = require('./config/DB');
 const {Hello} = require("./model/hello");
-
+const port = 2222;
 const app = express();
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const options = {
     useNewUrlParser: true,
-    reconnectTries: 10,
-    reconnectInterval: 500,
 };
 
-setTimeout(() => {
-    mongoose.connect(`${URL}${DB_NAME}`, options)
-        .then(() => console.log('successfully connected to DB'))
-        .catch((err) => console.log(err, 'error while connecting to db'));
-    mongoose.connection.on('error', () => console.error.bind(console, 'connection error:'));
-    mongoose.connection.once('open', () => console.log('connected'));
-}, 5000);
-
-
-const port = 2222;
+mongoose.connect(`${URL}${DB_NAME}`, options)
+    .then(() => console.log('successfully connected to DB'))
+    .catch((err) => console.log(err, 'error while connecting to db'));
+mongoose.connection.on('error', () => console.error.bind(console, 'connection error:'));
+mongoose.connection.once('open', () => console.log('connected'));
 
 app.get('/v1/hello', (req, res) => res.send('Hello World!'));
 app.post('/v1/hello', (req, res) => {
