@@ -1,32 +1,36 @@
 version: '3'
 services:
-  gateway:
-    container_name: gateway-node
-    restart: always
-    build: ./gateway
-    ports:
-      - '3333:3333'
-    links:
-      - hello-service
-      - welcome-service
+#  gateway:
+#    restart: always
+#    build: ./gateway
+#    links:
+#      - load-balancer-welcome
+#      - load-balancer-hello
 
   hello-service:
-    container_name: hello-service
     restart: always
     build: ./helloService
-    ports:
-      - '2222:2222'
     links:
       - hello-mongo
 
   welcome-service:
-    container_name: welcome-service
     restart: always
     build: ./welcomeService
-    ports:
-      - '1111:1111'
     links:
       - welcome-mongo
+
+  load-balancer-hello:
+    build: nginx/hello
+    ports:
+      - '8022:80'
+    links:
+      - hello-service
+  load-balancer-welcome:
+    build: nginx/welcome
+    ports:
+      - '8011:80'
+    links:
+      - welcome-service
 
   hello-mongo:
     image: mongo

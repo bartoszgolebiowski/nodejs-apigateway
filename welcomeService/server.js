@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
+const os = require('os');
 
 const {URL, DB_NAME} = require('./config/DB');
 const {Welcome} = require("./model/welcome");
@@ -22,7 +23,7 @@ mongoose.connection.on('error', () => console.error.bind(console, 'connection er
 mongoose.connection.once('open', () => console.log('connected'));
 
 
-app.get('/v1/welcome', (req, res) => res.send('Welcome World!'));
+app.get('/v1/welcome', (req, res) => res.send(os.hostname()));
 app.post('/v1/welcome', (req, res) => {
     Promise.resolve()
         .then(() => new Welcome(req.body))

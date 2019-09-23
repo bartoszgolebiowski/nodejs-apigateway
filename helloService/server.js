@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
+const os = require('os');
 
 const {URL, DB_NAME} = require('./config/DB');
 const {Hello} = require("./model/hello");
@@ -20,7 +21,7 @@ mongoose.connect(`${URL}${DB_NAME}`, options)
 mongoose.connection.on('error', () => console.error.bind(console, 'connection error:'));
 mongoose.connection.once('open', () => console.log('connected'));
 
-app.get('/v1/hello', (req, res) => res.send('Hello World!'));
+app.get('/v1/hello', (req, res) => res.send(os.hostname()));
 app.post('/v1/hello', (req, res) => {
     Promise.resolve()
         .then(() => new Hello(req.body))
