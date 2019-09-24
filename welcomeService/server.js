@@ -24,6 +24,7 @@ mongoose.connection.once('open', () => console.log('connected'));
 
 
 app.get('/v1/welcome', (req, res) => res.send(os.hostname()));
+app.get('/', (req, res) => res.send(os.hostname()));
 app.post('/v1/welcome', (req, res) => {
     Promise.resolve()
         .then(() => new Welcome(req.body))
