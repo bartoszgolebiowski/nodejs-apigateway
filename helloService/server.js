@@ -15,13 +15,15 @@ const options = {
     useNewUrlParser: true,
 };
 
+const mathRandom = Math.random();
+const counter = 0;
 mongoose.connect(`${URL}${DB_NAME}`, options)
     .then(() => console.log('successfully connected to DB'))
     .catch((err) => console.log(err, 'error while connecting to db'));
 mongoose.connection.on('error', () => console.error.bind(console, 'connection error:'));
 mongoose.connection.once('open', () => console.log('connected'));
 
-app.get('/v1/hello', (req, res) => res.send(os.hostname()));
+app.get('/v1/hello', (req, res) => res.send(`${os.hostname()} +  ${mathRandom} counter: ${counter}`));
 app.get('/', (req, res) => res.send(os.hostname()));
 app.post('/v1/hello', (req, res) => {
     Promise.resolve()

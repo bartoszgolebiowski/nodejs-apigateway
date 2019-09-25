@@ -1,19 +1,19 @@
 version: '3'
 services:
   hello-service:
-    image: ituriel26/hello:001
     restart: always
+    build: ./helloService
     links:
       - hello-mongo
 
   welcome-service:
     restart: always
-    image: ituriel26/welcome:001
+    build: ./welcomeService
     links:
       - welcome-mongo
 
   load-balancer:
-    image: ituriel26/nginx:001
+    build: ./nginx
     ports:
       - '80:80'
     links:
