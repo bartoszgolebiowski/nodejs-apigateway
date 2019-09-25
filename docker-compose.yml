@@ -13,7 +13,7 @@ services:
       - welcome-mongo
 
   load-balancer:
-    build: ./nginx
+    image: ituriel26/nginx:001
     ports:
       - '80:80'
     links:
