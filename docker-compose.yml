@@ -1,14 +1,14 @@
 version: '3'
 services:
   hello-service:
+    image: ituriel26/hello:001
     restart: always
-    build: ./helloService
     links:
       - hello-mongo
 
   welcome-service:
     restart: always
-    build: ./welcomeService
+    image: ituriel26/welcome:001
     links:
       - welcome-mongo
 
