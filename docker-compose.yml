@@ -3,12 +3,16 @@ services:
   hello-service:
     restart: always
     build: ./helloService
+    ports:
+      - '2222:2222'
     links:
       - hello-mongo
 
   welcome-service:
     restart: always
     build: ./welcomeService
+    ports:
+      - '1111:1111'
     links:
       - welcome-mongo
 
@@ -24,7 +28,11 @@ services:
     image: mongo
     container_name: hello-mongo
     command: mongod --port 27018
+    ports:
+      - '27018:27018'
 
   welcome-mongo:
     image: mongo
     container_name: welcome-mongo
+    ports:
+      - '27017:27017'
