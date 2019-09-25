@@ -3,16 +3,12 @@ services:
   hello-service:
     restart: always
     build: ./helloService
-    ports:
-      - '2222:2222'
     links:
       - hello-mongo
 
   welcome-service:
     restart: always
     build: ./welcomeService
-    ports:
-      - '1111:1111'
     links:
       - welcome-mongo
 
