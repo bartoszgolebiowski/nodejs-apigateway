@@ -5,20 +5,12 @@ services:
     build: ./helloService
     links:
       - hello-mongo
-    networks:
-      my-network:
-        aliases:
-          - hello-app
 
   welcome-service:
     restart: always
     build: ./welcomeService
     links:
       - welcome-mongo
-    networks:
-      my-network:
-        aliases:
-          - welcome-app
 
   load-balancer:
     build: ./nginx
@@ -32,13 +24,7 @@ services:
     image: mongo
     container_name: hello-mongo
     command: mongod --port 27018
-    ports:
-      - '27018:27018'
 
   welcome-mongo:
     image: mongo
     container_name: welcome-mongo
-    ports:
-      - '27017:27017'
-networks:
-  my-network:
