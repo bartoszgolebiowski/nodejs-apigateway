@@ -1,12 +1,5 @@
 version: '3'
 services:
-#  gateway:
-#    restart: always
-#    build: ./gateway
-#    links:
-#      - load-balancer-welcome
-#      - load-balancer-hello
-
   hello-service:
     restart: always
     build: ./helloService
@@ -19,17 +12,12 @@ services:
     links:
       - welcome-mongo
 
-  load-balancer-hello:
-    build: nginx/hello
+  load-balancer:
+    build: ./nginx
     ports:
-      - '8022:80'
+      - '80:80'
     links:
       - hello-service
-  load-balancer-welcome:
-    build: nginx/welcome
-    ports:
-      - '8011:80'
-    links:
       - welcome-service
 
   hello-mongo:
