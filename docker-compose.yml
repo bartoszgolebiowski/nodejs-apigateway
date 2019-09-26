@@ -2,15 +2,10 @@ version: '2'
 services:
   hello-service:
     restart: always
-    build: ./helloService
+    build: iturie26/hello:001
+    scale: 4
     links:
       - hello-mongo
-
-  welcome-service:
-    restart: always
-    build: ./welcomeService
-    links:
-      - welcome-mongo
 
   load-balancer:
     build: ./nginx
@@ -26,9 +21,3 @@ services:
     command: mongod --port 27018
     ports:
       - '27018:27018'
-
-  welcome-mongo:
-    image: mongo
-    container_name: welcome-mongo
-    ports:
-      - '27017:27017'
