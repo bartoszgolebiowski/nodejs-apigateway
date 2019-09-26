@@ -7,7 +7,7 @@ services:
       - hello-mongo
     networks:
       - db
-      - web
+      - lb
 
   load-balancer:
     build: ./nginx
@@ -16,7 +16,7 @@ services:
     links:
       - hello-service
     networks:
-      - web
+      - lb
 
   hello-mongo:
     image: mongo
