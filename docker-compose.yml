@@ -5,13 +5,9 @@ services:
     build: ./helloService
     links:
       - hello-mongo
-
-  welcome-service:
-    restart: always
-    build: ./welcomeService
-    links:
-      - welcome-mongo
-
+    networks:
+      - db
+      - web
   load-balancer:
     build: ./nginx
     ports:
@@ -19,16 +15,19 @@ services:
     links:
       - hello-service
       - welcome-service
-
+    networks:
+      - web
   hello-mongo:
     image: mongo
     container_name: hello-mongo
     command: mongod --port 27018
     ports:
       - '27018:27018'
+    networks:
+      - db
 
-  welcome-mongo:
-    image: mongo
-    container_name: welcome-mongo
-    ports:
-      - '27017:27017'
+networks:
+  db:
+    driver: bridge
+  lb:
+    driver: bridge
