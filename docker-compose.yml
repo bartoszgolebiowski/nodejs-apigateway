@@ -8,15 +8,16 @@ services:
     networks:
       - db
       - web
+
   load-balancer:
     build: ./nginx
     ports:
       - '80:80'
     links:
       - hello-service
-      - welcome-service
     networks:
       - web
+
   hello-mongo:
     image: mongo
     container_name: hello-mongo
