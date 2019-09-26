@@ -32,7 +32,6 @@ services:
 
   hello-mongo:
     image: mongo
-    container_name: hello-mongo
     command: mongod --port 27018
     ports:
       - '27018:27018'
@@ -40,7 +39,6 @@ services:
       - db
   welcome-mongo:
     image: mongo
-    container_name: hello-mongo
     ports:
       - '27017:27017'
     networks:
